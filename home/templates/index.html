@@ -1,0 +1,51 @@
+<!--IT EXTENDS ALL THE COMMAN CODE FROM THE BASE.HTML PAGE-->
+
+{% extends "base.html" %}
+
+{% block start %}
+
+    <h1>This is index page</h1>
+    <a href="/about/">
+        About
+    </a>
+    |
+    <a href="/contact/">
+        Contact
+    </a>
+
+    <hr>
+    <!--{{peoples}}-->
+    <h3><u>Students Data</u></h3>
+    <table class="container">
+        <tr>
+          <th>S.no</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Can vote</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{people.name}}</td>
+          <td>{{people.age}}</td>
+          <td {% if people.age >= 40 %} style="background:red"  {% endif %}>
+            {% if people.age <= 40 %}
+            👍
+            {% else %}
+            👎
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <p>{{text|truncatechars:80}}</p>
+      <p>
+        {% if "carrot" in vegetables %}
+            Yes available
+        {% elif "tomato" in vegetables %}
+            Tomato is available
+        {% else %}
+            Not available
+        {% endif %}
+      </p>
+{% endblock %}
